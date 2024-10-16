@@ -28,19 +28,19 @@ devtools::install_github("ekankaka/virtimepredicteR")
 
 This is a basic example which shows you how to solve a common problem:
 
-# load the package
+## load the package
 ``` r
 library(virtimepredicteR)
 ```
-# load your in-frame fasta file alignment using the Biostrings package)
-# Here, we are using the example fasta alignment which comes with the package
+## load your in-frame fasta file alignment using the Biostrings package)
+Here, we are using the example fasta alignment which comes with the package
 ``` r
 fasta_path <- system.file("extdata", "example_GAG_P17.fasta", package = "virtimepredicteR")
 myfasta <- Biostrings::readDNAStringSet(fasta_path)
 ```
 
 
-# gene region
+## gene region
 ```r
 # Should be one of the regions for which we have good predictive models. 
 # These include: "GAG_P17", "POL_RT", "POL_IN", "GAG_P24", "POL_RT_TRIMMED", 
@@ -48,18 +48,18 @@ myfasta <- Biostrings::readDNAStringSet(fasta_path)
 
 this_region <- "GAG_P17"
 ```
-# Calculate Average Pairwise Diversity on all nucleotides (APD)
+## Calculate Average Pairwise Diversity on all nucleotides (APD)
 ```r
 APD <- get_APD(fas = myfasta)[1]
 ```
 
-# Calculate APD on 3rd codon positions of in-frame alignment
+## Calculate APD on 3rd codon positions of in-frame alignment
 ```r
 APD_codons <- get_APD(fas = myfasta)[2]
 ```
 
-# APD version to use 
-# determine this from the best_models dataset that comes with the package.
+## APD version to use 
+Determine this from the best_models dataset that comes with the package.
 ```r
 APD_version_to_use = best_models$APD_version[best_models$gene_region = this_region]
 
@@ -70,12 +70,12 @@ APD_val = case_when(
 APD_val
 ```
 
-# Estimate viremic time
+## Estimate viremic time
 ```r
 years_untreated <- get_viremictime(APD_value = APD_val, gene_region = this_region)
 ```
 
-# View result
+## View result
 ```r
 years_untreated
 ```

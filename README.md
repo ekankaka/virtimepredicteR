@@ -16,29 +16,25 @@ For each gene region, model options include:
 - Piecewise Linear Regression of y against APD from 3rd codon positions
 
 ## Installation
-
 Installing the development version of virtimepredicteR:
-
 ``` r
 if (!require("devtools", character.only = TRUE)){install.packages("devtools")} else {require("devtools")}
 devtools::install_github("ekankaka/virtimepredicteR")
 ```
 
 ## Example
-
 This is a basic example which shows you how to solve a common problem:
 
 ## load the package
 ``` r
 library(virtimepredicteR)
 ```
-## load your in-frame fasta file alignment using the Biostrings package)
+## load in-frame fasta file alignment
 Here, we are using the example fasta alignment which comes with the package
 ``` r
 fasta_path <- system.file("extdata", "example_GAG_P17.fasta", package = "virtimepredicteR")
 myfasta <- Biostrings::readDNAStringSet(fasta_path)
 ```
-
 
 ## gene region
 ```r
@@ -59,11 +55,14 @@ APD on 3rd codon positions of in-frame alignment
 APD_codons <- get_APD(fas = myfasta)[2]
 ```
 
-## APD version to use 
-Determine this from the best_models dataset that comes with the package.
+## APD value to use 
+First, determine the APD version this from the best_models dataset that comes with the package.
+One version is APD and the other is APD_codons.
 ```r
 APD_version_to_use = best_models$APD_version[best_models$gene_region = this_region]
-
+```
+APD value
+```r
 APD_val = case_when(
   APD_version_to_use == "APD" ~ APD,
   APD_version_to_use == "APD_codons" ~ APD_codons)
@@ -74,9 +73,5 @@ APD_val
 ## Estimate viremic time
 ```r
 years_untreated <- get_viremictime(APD_value = APD_val, gene_region = this_region)
-```
-
-## View result
-```r
 years_untreated
 ```

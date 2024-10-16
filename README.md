@@ -34,6 +34,7 @@ Here, we are using the example fasta alignment which comes with the package
 ``` r
 fasta_path <- system.file("extdata", "example_GAG_P17.fasta", package = "virtimepredicteR")
 myfasta <- Biostrings::readDNAStringSet(fasta_path)
+head(myfasta)
 ```
 
 ## gene region
@@ -43,16 +44,19 @@ myfasta <- Biostrings::readDNAStringSet(fasta_path)
 # "VPU", "REV1", "GP120_C1", "REV" 
 
 this_region <- "GAG_P17"
+this_region
 ```
 ## Calculate Average Pairwise Diversity 
 APD on all nucleotides (APD)
 ```r
 APD <- get_APD(fas = myfasta)[1]
+APD
 ```
 
 APD on 3rd codon positions of in-frame alignment
 ```r
 APD_codons <- get_APD(fas = myfasta)[2]
+APD_codons
 ```
 
 ## APD value to use 
@@ -60,6 +64,7 @@ First, determine the APD version this from the best_models dataset that comes wi
 One version is APD and the other is APD_codons.
 ```r
 APD_version_to_use = best_models$APD_version[best_models$gene_region = this_region]
+APD_version_to_use
 ```
 APD value
 ```r

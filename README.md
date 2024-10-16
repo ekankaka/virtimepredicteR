@@ -48,12 +48,13 @@ myfasta <- Biostrings::readDNAStringSet(fasta_path)
 
 this_region <- "GAG_P17"
 ```
-## Calculate Average Pairwise Diversity on all nucleotides (APD)
+## Calculate Average Pairwise Diversity 
+APD on all nucleotides (APD)
 ```r
 APD <- get_APD(fas = myfasta)[1]
 ```
 
-## Calculate APD on 3rd codon positions of in-frame alignment
+APD on 3rd codon positions of in-frame alignment
 ```r
 APD_codons <- get_APD(fas = myfasta)[2]
 ```
